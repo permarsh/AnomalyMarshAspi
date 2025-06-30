@@ -119,12 +119,17 @@ if uploaded_file is not None:
         plt.figure(figsize=(7, 4))
         pairplot = sns.pairplot(df_numeric, hue='Outlier', palette={1: 'blue', -1: 'red'}, plot_kws={'alpha': 0.7})
 
+        
         # Ruota le etichette degli assi
         for ax in pairplot.axes.flatten():
             ax.set_xlabel(ax.get_xlabel(), rotation=45)
         plt.suptitle('Pairplot con Outliers (in rosso)', y=1.02, fontsize=10)
         plt.subplots_adjust(hspace=0.5)  # Aumenta lo spazio verticale tra le righe
         st.pyplot(plt)
+
+        # Embedding del report di Power BI
+        powerbi_report_url = "https://app.powerbi.com/view?r=eyJrIjoiM2FiMDVkZjUtNGY4My00MWFiLWEwZWQtNGY2YWI4Mjc0M2NlIiwidCI6IjJhNmU2MDkyLTczZTQtNDc1Mi1iMWE1LTQ3N2ExN2Y1MDU2ZCIsImMiOjN9"
+        st.markdown(f'<iframe width="1600" height="1200" src="{powerbi_report_url}" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
 
         # Create a buffer to hold the CSV data
         csv_buffer = io.StringIO()
@@ -139,6 +144,4 @@ if uploaded_file is not None:
             mime='text/csv'
         )
 
-        # Embedding del report di Power BI
-        powerbi_report_url = "https://app.powerbi.com/view?r=eyJrIjoiM2FiMDVkZjUtNGY4My00MWFiLWEwZWQtNGY2YWI4Mjc0M2NlIiwidCI6IjJhNmU2MDkyLTczZTQtNDc1Mi1iMWE1LTQ3N2ExN2Y1MDU2ZCIsImMiOjN9"
-        st.markdown(f'<iframe width="1600" height="1200" src="{powerbi_report_url}" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
+        
