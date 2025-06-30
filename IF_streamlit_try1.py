@@ -6,7 +6,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import IsolationForest
 import streamlit as st
-import os  # Importa il modulo os
+import io  # Import io for in-memory file handling
 
 # Definizione delle caratteristiche numeriche
 numeric_features = [
@@ -126,14 +126,19 @@ if uploaded_file is not None:
         plt.subplots_adjust(hspace=0.5)  # Aumenta lo spazio verticale tra le righe
         st.pyplot(plt)
 
-        # Ottieni il percorso della cartella del file caricato
-        input_file_path = uploaded_file.name
-        output_file_path = os.path.join(os.path.dirname(input_file_path), 'anomalie_con_score.csv')
+        # Create a buffer to hold the CSV data
+        csv_buffer = io.StringIO()
+        results.to_csv(csv_buffer, index=False)
+        csv_buffer.seek(0)  # Move to the beginning of the StringIO buffer
 
-        # Salvataggio del file CSV
-        results.to_csv(output_file_path, index=False)
-        st.success(f"File CSV con anomalie e punteggi salvato come '{output_file_path}'.")
+        # Create a download button
+        st.download_button(
+            label="Download CSV with Anomalies and Scores",
+            data=csv_buffer.getvalue(),
+            file_name='anomalie_con_score.csv',
+            mime='text/csv'
+        )
 
         # Embedding del report di Power BI
         powerbi_report_url = "https://app.powerbi.com/view?r=eyJrIjoiM2FiMDVkZjUtNGY4My00MWFiLWEwZWQtNGY2YWI4Mjc0M2NlIiwidCI6IjJhNmU2MDkyLTczZTQtNDc1Mi1iMWE1LTQ3N2ExN2Y1MDU2ZCIsImMiOjN9"
-        st.markdown(f'<iframe width="800" height="600" src="{powerbi_report_url}" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
+        st.markdown(f'<iframe width="1600" height="1200" src="{powerbi_report_url}" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
