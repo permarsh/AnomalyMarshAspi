@@ -83,10 +83,11 @@ st.set_page_config(page_title="Anomaly Detection", layout="wide")  # Imposta il 
 # Crea una riga per il logo e il titolo
 col1, col2 = st.columns([1, 4])  # Colonna per il logo e colonna per il titolo
 
-# Inserimento del logo nella prima colonna
+# Inserimento dellogo nella prima colonna
 with col1:
-    logo_path = r'C:\Users\u1208854\OneDrive - MMC\Desktop\Documenti amministrativi\My Documents\Icon\LOGO MARSH_.jpg'
-    st.image(logo_path, width=80)  # Imposta la larghezza a 80 pixel per un logo più piccolo
+   logo_url = "https://logowik.com/content/uploads/images/marsh9653.jpg"  # Sostituisci con l'URL reale
+   st.image(logo_url, width=180)
+
 
 # Inserimento del titolo nella seconda colonna
 with col2:
