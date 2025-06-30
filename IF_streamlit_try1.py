@@ -131,4 +131,4 @@ if uploaded_file is not None:
 
         # Embedding del report di Power BI
         powerbi_report_url = "https://app.powerbi.com/view?r=eyJrIjoiM2FiMDVkZjUtNGY4My00MWFiLWEwZWQtNGY2YWI4Mjc0M2NlIiwidCI6IjJhNmU2MDkyLTczZTQtNDc1Mi1iMWE1LTQ3N2ExN2Y1MDU2ZCIsImMiOjN9"
-        st.markdown(f'<iframe width="800" height="600" src="{powerbi_report_url}" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
+        st.markdown(f'<iframe width="1600" height="1200" src="{powerbi_report_url}" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
