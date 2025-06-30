@@ -88,7 +88,6 @@ with col1:
    logo_url = "https://logowik.com/content/uploads/images/marsh9653.jpg"  # Sostituisci con l'URL reale
    st.image(logo_url, width=180)
 
-
 # Inserimento del titolo nella seconda colonna
 with col2:
     st.title("Marsh Advisory - Anomaly Detection")
@@ -123,10 +122,13 @@ if uploaded_file is not None:
         for ax in pairplot.axes.flatten():
             ax.set_xlabel(ax.get_xlabel(), rotation=45)
         plt.suptitle('Pairplot con Outliers (in rosso)', y=1.02, fontsize=10)
-        # Aggiungi spazio extra tra le righe
         plt.subplots_adjust(hspace=0.5)  # Aumenta lo spazio verticale tra le righe
         st.pyplot(plt)
 
         # Salvataggio del file CSV
         results.to_csv(r'C:\Users\u1208854\OneDrive - MMC\General\ML\DEMO\OUTPUT\anomalie_con_score.csv', index=False)
         st.success("File CSV con anomalie e punteggi salvato come 'anomalie_con_score.csv'.")
+
+        # Embedding del report di Power BI
+        powerbi_report_url = "https://app.powerbi.com/view?r=eyJrIjoiM2FiMDVkZjUtNGY4My00MWFiLWEwZWQtNGY2YWI4Mjc0M2NlIiwidCI6IjJhNmU2MDkyLTczZTQtNDc1Mi1iMWE1LTQ3N2ExN2Y1MDU2ZCIsImMiOjN9"
+        st.markdown(f'<iframe width="800" height="600" src="{powerbi_report_url}" frameborder="0" allowFullScreen="true"></iframe>', unsafe_allow_html=True)
