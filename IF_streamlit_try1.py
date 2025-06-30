@@ -59,7 +59,7 @@ def train_model(df):
 
     model = Pipeline(steps=[
         ('preprocessor', preprocessor),
-        ('isolation_forest', IsolationForest(n_estimators=100, contamination=0.007, random_state=42))
+        ('isolation_forest', IsolationForest(n_estimators=300, contamination=0.01, random_state=42))
     ])
 
     model.fit(df_selected)
